@@ -1,6 +1,16 @@
+#findMe {
+    clear: left;
+    display:block;
+}
+
 #profileImage {
   float: right;
   margin-left: 30px;
+}
+
+#sherlockImage {
+  float: left;
+  margin-right: 30px;
 }
 
 #content {
@@ -9,6 +19,6 @@
   width: 650px;
 }
 
-#greeting-container {
+#quote-container {
   margin-top: 20px;
 }
