@@ -1,3 +1,8 @@
+#findMe {
+    clear: left;
+    display:block;
+}
+
 #profileImage {
   float: right;
   margin-left: 30px;
