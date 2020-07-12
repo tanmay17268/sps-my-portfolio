@@ -13,16 +13,16 @@
 // limitations under the License.
 
 /**
- * Adds a random greeting to the page.
+ * Adds a random quote to the page.
  */
-function addRandomGreeting() {
-  const greetings =
-      ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+function addRandomQuote() {
+  const quotes =
+      ['You have a grand gift for silence, Watson. It makes you quite invaluable as a companion.', 'When you have eliminated the impossible, whatever remains, however improbable, must be the truth?', 'Watson. Come at once if convenient. If inconvenient, come all the same.', 'Crime is common. Logic is rare.', 'You see, but you do not observe.'];
 
   // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
   // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  const quotesContainer = document.getElementById('quote-container');
+  quotesContainer.innerText = quote;
 }
