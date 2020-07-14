@@ -26,3 +26,25 @@ function addRandomQuote() {
   const quotesContainer = document.getElementById('quote-container');
   quotesContainer.innerText = quote;
 }
+
+/** Uses fetch command to get comments from Server
+ */
+function showComments() {
+  fetch('/data').then((response) => {
+      return response.json();
+  }).then((comments) => {
+      console.log(comments);
+      const commentsContainer = document.getElementById('comments-container');
+      commentsContainer.innerText = '';
+      for (var index = 0; index < comments.length; index++) {
+        commentsContainer.appendChild(createListElement(comments[index]));
+      }
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
