@@ -16,10 +16,24 @@
  * Adds a random quote to the page.
  */
 function addRandomQuote() {
+  const quotes =
+      ['You have a grand gift for silence, Watson. It makes you quite invaluable as a companion.', 'When you have eliminated the impossible, whatever remains, however improbable, must be the truth?', 'Watson. Come at once if convenient. If inconvenient, come all the same.', 'Crime is common. Logic is rare.', 'You see, but you do not observe.'];
+
+  // Pick a random greeting.
+  const quote = quotes[Math.floor(Math.random() * quotes.length)];
+
+  // Add it to the page.
+  const quotesContainer = document.getElementById('quote-container');
+  quotesContainer.innerText = quote;
+}
+
+/** Uses fetch command to get comments from Server
+ */
+function showComments() {
   fetch('/data').then((response) => {
       return response.text();
-  }).then((quote) => {
-      const quotesContainer = document.getElementById('quote-container');
-      quotesContainer.innerText = quote;
+  }).then((comment) => {
+      const commentsContainer = document.getElementById('comments-container');
+      commentsContainer.innerText = comment;
   });
 }
