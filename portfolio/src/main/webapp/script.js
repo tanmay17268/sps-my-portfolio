@@ -26,3 +26,14 @@ function addRandomQuote() {
   const quotesContainer = document.getElementById('quote-container');
   quotesContainer.innerText = quote;
 }
+
+/** Uses fetch command to get comments from Server
+ */
+function showComments() {
+  fetch('/data').then((response) => {
+      return response.text();
+  }).then((comment) => {
+      const commentsContainer = document.getElementById('comments-container');
+      commentsContainer.innerText = comment;
+  });
+}

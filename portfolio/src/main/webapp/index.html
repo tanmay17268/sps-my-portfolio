@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="showComments()">
     <div id="content">
       <center><h1>Tanmay Bansal</h1></center>
       <h2>About Me</h2>
@@ -26,6 +26,64 @@
         <a href="http://codeforces.com/profile/tanmay28"><img src="/images/codeforcesIcon.jpg" width="100" style="margin:0px 25px"/></a>
         <a href="https://www.codechef.com/users/tanmay28"><img src="/images/codechefIcon.jpg" width="100" style="margin:0px 25px"/></a>
       </div>
+      <h2>Projects</h2>
+      <ul>
+          <li><strong>Graphical Feelings: GIF Sentiment Learning</strong><br>
+          To improve GIF search, implemented a DL system that predicts real-valued sentiment scores for GIFs using two network architectures (FC, RNN - LSTM).</li>
+          <li><strong>Emoji Analysis: A study on the use of skin tone modifiers on social media</strong><br>
+          A quantitative analysis of how people pose certain personalities using emoji skin color modifiers under different situations.</li>
+          <li><strong>Depression Detection from Acoustic features</strong><br>
+          An automated system for detecting depression from acoustic features (MFCC, Prosodic) in speech using convolutional neural network.</li>
+          <li><strong>IPC and Demand Paging in xv6 OS</strong><br>
+          Implemented demand paging by mapping a virtual page to a physical page only when it was dereferenced. Added the functionality of inter-process communication without making system calls. Links: <a href="https://github.com/shubham2398/OS-xv6-Paging">Github</a></li>
+          <li><strong>Movie Recommendation System</strong><br>
+          Built and deployed a web-app which asks user to rate at least 10 movies, and based on the ratings, he/she will be recommended 10 more movies using collaborative filtering algorithms. Links: <a href="https://tb-movie-recommendation-system.herokuapp.com/">Website</a>, <a href="https://github.com/tanmay17268/movie_recommendation_system">Github</a></li>
+          <li><strong>SnakeVSBlocks game</strong><br>
+          A desktop application. Provides a gameplay similar to the popular “Snake VS Blocks” game on Google Play Store. The project was made using JavaFx, Animation Timers, and Serializability Concepts. Links: <a href="https://drive.google.com/file/d/0B3hKwl8Gj0G5VGxYZTJwLUNmdlhRSzZtQXEydVFZRnQ5WWJN/view?usp=sharing">Video</a>, <a href="https://github.com/shubham2398/SnakeVsBlocks">Github</a></li>
+          <li><strong>Tomato Growing Self Contained System</strong><br>
+          Created an automated system that irrigates a tomato plant based on the moisture content of the soil, provides nutrients, organic pesticide and proper light. Links: <a href="https://drive.google.com/file/d/1f_oxV-FI1E5ZPpG76MIzpBBoQf4Wq_R0/view">Poster</a>, <a href="https://www.youtube.com/watch?v=XNEuWdccOy8">Demonstration Video</a>, <a href="https://sites.google.com/iiitd.ac.in/tomagrow/">Website</a></li>
+      </ul>
+      <h2>My Watched Shows</h2>
+      <center><img src="/images/tv_web_aud.png" width="300"/></center>
+      <p>Click <a href="imageGallery.html">here</a> to see the web series and tv shows I have watched.</p>
+      <h2>Positions Held</h2>
+      <img src="/images/responsibility.jpg" width="250" style="float: right;
+  margin-left:30px; margin-top:30px;"/>
+      <ul>
+          <li><strong>Undergraduate Teaching Assistant</strong><br>
+          Data Structures and Algorithms, IIIT-Delhi</li>
+          <li><strong>Core Member</strong><br>
+          Precog Research Group, IIIT-Delhi</li>
+          <li><strong>Undergraduate Teaching Assistant</strong><br>
+          Competitive Programming I, IIIT-Delhi</li>
+          <li><strong>Admin</strong><br>
+          FooBar | Programming Club, IIIT-Delhi</li>
+          <li><strong>Event Head</strong> (Organizing Team)<br>
+          ProCon Jr | Onsite Programming Event, IIIT-Delhi</li>
+      </ul>
+      <h2>Notable Coursework</h2>
+      <img src="/images/coursework.gif" width="250" style="float: right;
+  margin-left:30px; margin-top:50px;"/>
+      <ul>
+          <li>Programming in Python</li>
+          <li>Data Structures and Algorithms</li>
+          <li>Advanced Programming in Java</li>
+          <li>Analysis and Design of Algorithms</li>
+          <li>Database Management Systems</li>
+          <li>Network Security</li>
+          <li>Operating System</li>
+          <li>Theory of Computation</li>
+          <li>Graph Theory</li>
+          <li>Machine Learning</li>
+          <li>Deep Learning</li>
+      </ul>
+      <h2>Certifications</h2>
+      <ul>
+          <li>Codechef Certification on Data Structures and Algorithms Programme (CCDSAP)</li>
+          <li>Microsoft Office Specialist Master Certification (MOS)</li>
+      </ul>
+      <h2>Comments</h2>
+      <div id="comments-container"></div>
     </div>
   </body>
 </html>
