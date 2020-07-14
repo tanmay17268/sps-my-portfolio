@@ -31,9 +31,20 @@ function addRandomQuote() {
  */
 function showComments() {
   fetch('/data').then((response) => {
-      return response.text();
-  }).then((comment) => {
+      return response.json();
+  }).then((comments) => {
+      console.log(comments);
       const commentsContainer = document.getElementById('comments-container');
-      commentsContainer.innerText = comment;
+      commentsContainer.innerText = '';
+      for (var index = 0; index < comments.length; index++) {
+        commentsContainer.appendChild(createListElement(comments[index]));
+      }
   });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
 }
