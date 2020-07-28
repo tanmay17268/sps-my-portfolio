@@ -26,16 +26,19 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthenticationServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html");
+        response.setContentType("application/json;");
         
         UserService userService = UserServiceFactory.getUserService();
         if (userService.isUserLoggedIn()) {
-            response.getWriter().println("1");
+            String urlToRedirectToAfterUserLogsOut = "/";
+            String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
+
+            response.getWriter().println("{\"authenticated\": \"1\", \"logoutUrl\": \"" + logoutUrl + "\"}");
         } else {
             String urlToRedirectToAfterUserLogsIn = "/";
             String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
             
-            response.getWriter().println(loginUrl);
+            response.getWriter().println("{\"authenticated\": \"0\", \"loginUrl\": \"" + loginUrl + "\"}");
         }
     }
 }

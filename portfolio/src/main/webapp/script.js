@@ -31,14 +31,16 @@ function addRandomQuote() {
  */
 function showComments() {
   fetch('/authenticate').then((response) => {
-      return response.text();
-  }).then((authenticated) => {
-      if (authenticated.trim() === "1") {
+      return response.json();
+  }).then((response) => {
+      console.log(response)
+      const signInButton = document.getElementById('sign-in');
+      if (response.authenticated === "1") {
+        signInButton.innerHTML = '<form action="' + response.logoutUrl + '" method="GET"><button type="submit">Sign Out</button></form>';
         document.getElementById("add-comment").style.display="block";
       }
       else {
-          const signInButton = document.getElementById('sign-in');
-          signInButton.innerHTML = '<form action="' + authenticated + '" method="GET"><button type="submit">Sign In</button></form>';
+          signInButton.innerHTML = '<form action="' + response.loginUrl + '" method="GET"><button type="submit">Sign In</button></form>';
       }
   })
   fetch('/data').then((response) => {
@@ -47,7 +49,7 @@ function showComments() {
       const commentsContainer = document.getElementById('comments-container');
       commentsContainer.innerText = '';
       for (var index = 0; index < comments.length; index++) {
-        commentsContainer.appendChild(createListElement(comments[index].text));
+        commentsContainer.appendChild(createListElement(comments[index].email + ": " + comments[index].text));
       }
   });
 }
