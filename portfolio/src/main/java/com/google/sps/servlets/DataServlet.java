@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
@@ -21,6 +23,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Comment;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
@@ -39,9 +42,14 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    List<String> comments = new ArrayList<String>();
+    List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      String comment = (String) entity.getProperty("text");
+      long id = entity.getKey().getId();
+      String text = (String) entity.getProperty("text");
+      String email = (String) entity.getProperty("email");
+      long timestamp = (long) entity.getProperty("timestamp");
+
+      Comment comment = new Comment(id, text, email, timestamp);
       comments.add(comment);
     }
 
@@ -53,12 +61,15 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String comment = getParameter(request, "new-comment", "");
+    UserService userService = UserServiceFactory.getUserService();
+    String userEmail = userService.getCurrentUser().getEmail();
     
     if (!comment.equals("")) {
         long timestamp = System.currentTimeMillis();
         Entity commentEntity = new Entity("Comment");
         commentEntity.setProperty("text", comment);
         commentEntity.setProperty("timestamp", timestamp);
+        commentEntity.setProperty("email", userEmail);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(commentEntity);
@@ -72,7 +83,7 @@ public class DataServlet extends HttpServlet {
    * Converts an ArrayList instance into a JSON string using the Gson library. Note: We first added
    * the Gson library dependency to pom.xml.
    */
-  private String convertToJson(List<String> data) {
+  private String convertToJson(List<Comment> data) {
     Gson gson = new Gson();
     String json = gson.toJson(data);
     return json;
