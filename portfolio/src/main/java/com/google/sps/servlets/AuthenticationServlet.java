@@ -32,7 +32,10 @@ public class AuthenticationServlet extends HttpServlet {
         if (userService.isUserLoggedIn()) {
             response.getWriter().println("1");
         } else {
-            response.getWriter().println("0");
+            String urlToRedirectToAfterUserLogsIn = "/";
+            String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
+            
+            response.getWriter().println(loginUrl);
         }
     }
 }

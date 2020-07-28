@@ -30,10 +30,20 @@ function addRandomQuote() {
 /** Uses fetch command to get comments from Server
  */
 function showComments() {
+  fetch('/authenticate').then((response) => {
+      return response.text();
+  }).then((authenticated) => {
+      if (authenticated.trim() === "1") {
+        document.getElementById("add-comment").style.display="block";
+      }
+      else {
+          const signInButton = document.getElementById('sign-in');
+          signInButton.innerHTML = '<form action="' + authenticated + '" method="GET"><button type="submit">Sign In</button></form>';
+      }
+  })
   fetch('/data').then((response) => {
       return response.json();
   }).then((comments) => {
-      console.log(comments);
       const commentsContainer = document.getElementById('comments-container');
       commentsContainer.innerText = '';
       for (var index = 0; index < comments.length; index++) {
